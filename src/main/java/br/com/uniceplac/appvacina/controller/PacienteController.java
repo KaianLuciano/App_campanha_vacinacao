@@ -38,7 +38,7 @@ public class PacienteController {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteService.findAll());
     }
 
-    @Operation(summary = "Busca a campanha o paciente presente no banco representado pelo ID passado no end-point", method = "GET")
+    @Operation(summary = "Busca o paciente presente no banco representado pelo ID passado no end-point", method = "GET")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
             @ApiResponse(responseCode = "422", description = "Dado de requisição inválida"),
