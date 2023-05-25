@@ -5,6 +5,7 @@ import br.com.uniceplac.appvacina.DTO.UsuarioDTO;
 import br.com.uniceplac.appvacina.models.PacienteModel;
 import br.com.uniceplac.appvacina.models.UsuarioModel;
 import br.com.uniceplac.appvacina.service.UsuarioService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@Tag(name = "usuario")
 @AllArgsConstructor
 public class UsuarioController {
 

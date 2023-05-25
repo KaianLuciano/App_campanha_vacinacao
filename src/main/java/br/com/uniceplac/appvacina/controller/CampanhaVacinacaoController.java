@@ -59,7 +59,6 @@ public class CampanhaVacinacaoController {
         return ResponseEntity.status(HttpStatus.OK).body(vacinacaoService.saveCampanha(vacinacaoModel));
     }
 
-
     @Operation(summary = "Atualiza uma campanha existente no banco", method = "PUT")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Campanha atualizada com sucesso"),

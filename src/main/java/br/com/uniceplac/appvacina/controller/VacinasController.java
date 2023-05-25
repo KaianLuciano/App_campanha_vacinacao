@@ -5,6 +5,7 @@ import br.com.uniceplac.appvacina.DTO.VacinasDTO;
 import br.com.uniceplac.appvacina.models.UsuarioModel;
 import br.com.uniceplac.appvacina.models.VacinasModel;
 import br.com.uniceplac.appvacina.service.VacinasService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/vacinas")
+@Tag(name = "vacina")
 @AllArgsConstructor
 public class VacinasController {
 
