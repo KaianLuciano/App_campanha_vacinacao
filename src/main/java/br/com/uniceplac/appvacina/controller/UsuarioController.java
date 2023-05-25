@@ -53,7 +53,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{idUsuario}")
-    public ResponseEntity<Object> deleteCampanha(@PathVariable(value = "idUsuario") Long idUsuario) {
+    public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
         Optional<UsuarioModel> usuarioModelOptional = usuarioService.findByIdPrivate(idUsuario);
 
         if (usuarioModelOptional.isEmpty()) {
