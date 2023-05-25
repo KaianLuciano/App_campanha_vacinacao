@@ -39,4 +39,5 @@ public class PacienteService {
         pacienteRepository.delete(pacienteModel);
         return new PacienteDTO(pacienteModel);
     }
+
 }
