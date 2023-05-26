@@ -1,8 +1,6 @@
 package br.com.uniceplac.appvacina.service;
 
-import br.com.uniceplac.appvacina.DTO.PacienteDTO;
 import br.com.uniceplac.appvacina.DTO.UsuarioDTO;
-import br.com.uniceplac.appvacina.models.PacienteModel;
 import br.com.uniceplac.appvacina.models.UsuarioModel;
 import br.com.uniceplac.appvacina.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -23,6 +21,7 @@ public class UsuarioService {
     }
 
     public UsuarioDTO findById(Long idUsuario) {
+
         return new UsuarioDTO(usuarioRepository.findById(idUsuario).get());
     }
 
@@ -35,9 +34,10 @@ public class UsuarioService {
         return new UsuarioDTO(usuarioModel);
     }
 
-    public UsuarioDTO deleteUsuario(UsuarioModel usuarioModel) {
-        usuarioRepository.delete(usuarioModel);
-        return new UsuarioDTO(usuarioModel);
+    public UsuarioDTO deleteUsuarioById(Long idUsuario) {
+        usuarioRepository.deleteById(idUsuario);
+        UsuarioModel usuario = usuarioRepository.findById(idUsuario).get();
+        return new UsuarioDTO(usuario);
     }
 
 }

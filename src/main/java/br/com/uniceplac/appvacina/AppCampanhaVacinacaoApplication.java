@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @OpenAPIDefinition(info = @Info(title = "Campanha de Vacinação API", version = "1", description = "" +
 		"O projeto \"App_campanha_vacinacao\" é uma API desenvolvida utilizando o framework Spring Boot, versão 3.1.0. A API é projetada para ser utilizada em um aplicativo de vacinação, fornecendo funcionalidades relacionadas à gestão de campanhas de vacinação.\n" +
 		"\n" +
-		"O projeto possui as seguintes dependências:\n" +
+		"O projeto utiliza a versão 17 do Java, além disso possui as seguintes dependências:\n" +
 		"\n" +
 		"    org.springframework.boot:spring-boot-starter-data-jpa (versão 3.1.0): Dependência do Spring Boot para integração com o banco de dados utilizando a especificação JPA (Java Persistence API).\n" +
 		"\n" +
@@ -37,9 +37,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 		"Em resumo, o projeto é uma API de campanha de vacinação, desenvolvida em Spring Boot 3.1.0, que utiliza várias dependências e tecnologias para fornecer funcionalidades de gerenciamento de campanhas de vacinação, integração com o banco de dados, validação de dados, documentação da API, entre outros recursos."))
 @EnableScheduling
 public class AppCampanhaVacinacaoApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(AppCampanhaVacinacaoApplication.class, args);
 	}
-
+	// http://localhost:8080/swagger-ui/index.html#/
 }

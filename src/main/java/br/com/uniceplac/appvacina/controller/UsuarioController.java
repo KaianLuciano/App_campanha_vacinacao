@@ -1,8 +1,6 @@
 package br.com.uniceplac.appvacina.controller;
 
-import br.com.uniceplac.appvacina.DTO.PacienteDTO;
 import br.com.uniceplac.appvacina.DTO.UsuarioDTO;
-import br.com.uniceplac.appvacina.models.PacienteModel;
 import br.com.uniceplac.appvacina.models.UsuarioModel;
 import br.com.uniceplac.appvacina.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -96,13 +94,7 @@ public class UsuarioController {
     })
     @DeleteMapping("/{idUsuario}")
     public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
-        Optional<UsuarioModel> usuarioModelOptional = usuarioService.findByIdPrivate(idUsuario);
-
-        if (usuarioModelOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario com o Id especificado não foi encontrado");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.deleteUsuario(usuarioModelOptional.get()));
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.deleteUsuarioById(idUsuario));
     }
 
 }

@@ -30,4 +30,10 @@ public class UsuarioModel implements Serializable {
     @Column(name = "tipo_usuario")
     private TipoUsuario tipo_usuario;
 
+    public UsuarioModel(String username, String email, String senha, TipoUsuario tipo_usuario) {
+        this.username = username;
+        this.email = email;
+        this.senha = senha;
+        this.tipo_usuario = tipo_usuario;
+    }
 }
