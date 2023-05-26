@@ -1,5 +1,6 @@
 package br.com.uniceplac.appvacina.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,5 +20,12 @@ public class CampanhaVacinacaoModel implements Serializable {
     private String nome;
 
     @Column(name = "data")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.ssXXX")
     private Date data;
+
+    public CampanhaVacinacaoModel(String nome, Date data) {
+        this.nome = nome;
+        this.data = data;
+    }
+
 }

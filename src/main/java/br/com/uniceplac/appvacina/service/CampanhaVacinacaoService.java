@@ -34,9 +34,10 @@ public class CampanhaVacinacaoService {
         return new CampanhaVacinacaoDTO(vacinacaoModel);
     }
 
-    public CampanhaVacinacaoDTO deleteCampanha(CampanhaVacinacaoModel vacinacaoModel) {
-            vacinacaoRepository.delete(vacinacaoModel);
-            return new CampanhaVacinacaoDTO(vacinacaoModel);
+    public CampanhaVacinacaoDTO deleteCampanhaById(Long idCampanha) {
+            CampanhaVacinacaoModel campanhaModel = vacinacaoRepository.findById(idCampanha).get();
+            vacinacaoRepository.deleteById(idCampanha);
+            return new CampanhaVacinacaoDTO(campanhaModel);
     }
 
 }

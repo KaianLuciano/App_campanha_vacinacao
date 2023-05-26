@@ -93,13 +93,7 @@ public class CampanhaVacinacaoController {
     })
     @DeleteMapping(value = "/{idCampanha}")
     public ResponseEntity<Object> deleteCampanha(@PathVariable(value = "idCampanha") Long idCampanha) {
-        Optional<CampanhaVacinacaoModel> vacinacaoModelOptional = vacinacaoService.findByIdPrivate(idCampanha);
-
-        if (vacinacaoModelOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Campanha com o Id especificado não foi encontrado");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(vacinacaoService.deleteCampanha(vacinacaoModelOptional.get()));
+        return ResponseEntity.status(HttpStatus.OK).body(vacinacaoService.deleteCampanhaById(idCampanha));
     }
 
 

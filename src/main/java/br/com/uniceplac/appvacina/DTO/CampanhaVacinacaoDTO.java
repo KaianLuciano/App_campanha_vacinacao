@@ -2,6 +2,7 @@ package br.com.uniceplac.appvacina.DTO;
 
 import br.com.uniceplac.appvacina.models.CampanhaVacinacaoModel;
 import br.com.uniceplac.appvacina.models.PacienteModel;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,9 +22,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class CampanhaVacinacaoDTO implements Serializable {
 
-    @Column(name = "nome")
     private String nome;
-    @Column
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.ssXXX")
     private Date data;
 
     public CampanhaVacinacaoDTO(CampanhaVacinacaoModel entity) {
