@@ -35,9 +35,10 @@ public class VacinasService {
         return new VacinasDTO(vacinasModel);
     }
 
-    public VacinasDTO deleteVacina(VacinasModel vacinasModel) {
-        vacinasRepository.delete(vacinasModel);
-        return new VacinasDTO(vacinasModel);
+    public VacinasDTO deleteVacina(Long idVacina) {
+        VacinasModel vacina = vacinasRepository.findById(idVacina).get();
+        vacinasRepository.deleteById(idVacina);
+        return new VacinasDTO(vacina);
     }
 
 }

@@ -23,4 +23,8 @@ public class VacinasModel implements Serializable {
     @Column(name = "lote")
     private String lote;
 
+    public VacinasModel(String nome, String lote) {
+        this.nome = nome;
+        this.lote = lote;
+    }
 }
