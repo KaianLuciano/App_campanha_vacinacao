@@ -95,14 +95,8 @@ public class PacienteController {
             @ApiResponse(responseCode = "500", description = "Erro ao salvar os dados"),
     })
     @DeleteMapping("/{idPaciente}")
-    public ResponseEntity<Object> deleteCampanha(@PathVariable(value = "idPaciente") String idPaciente) {
-        Optional<PacienteModel> pacienteModelOptional = pacienteService.findByIdPrivate(idPaciente);
-
-        if (pacienteModelOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Paciente com o Id especificado não foi encontrado");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(pacienteService.deletePaciente(pacienteModelOptional.get()));
+    public ResponseEntity<Object> deleteCampanhaById(@PathVariable(value = "idPaciente") String idPaciente) {
+        return ResponseEntity.status(HttpStatus.OK).body(pacienteService.deletePaciente(idPaciente));
     }
 
 }

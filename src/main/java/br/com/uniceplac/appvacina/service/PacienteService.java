@@ -35,9 +35,10 @@ public class PacienteService {
         return new PacienteDTO(pacienteModel);
     }
 
-    public PacienteDTO deletePaciente(PacienteModel pacienteModel) {
-        pacienteRepository.delete(pacienteModel);
-        return new PacienteDTO(pacienteModel);
+    public PacienteDTO deletePaciente(String cpf) {
+        PacienteModel paciente = pacienteRepository.findById(cpf).get();
+        pacienteRepository.deleteById(cpf);
+        return new PacienteDTO(paciente);
     }
 
 }

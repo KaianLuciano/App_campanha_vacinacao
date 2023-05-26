@@ -99,6 +99,4 @@ class UsuarioTest {
         Mockito.verify(usuarioRepository, Mockito.times(1)).deleteById(1L);
     }
 
-
-
 }
