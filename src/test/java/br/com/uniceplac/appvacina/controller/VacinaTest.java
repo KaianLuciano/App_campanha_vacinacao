@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class VacinaTest {
+class VacinaTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -75,6 +75,28 @@ public class VacinaTest {
                 .andExpect(jsonPath("$.nome").value("Gripe"))
                 .andExpect(jsonPath("$.lote").value("Pfizer"))
                 .andExpect(content().json("{nome: 'Gripe', lote: 'Pfizer'}"));
+    }
+
+    @Test
+    void atualizarVacinaTest() throws Exception {
+        Long idVacina = 1L;
+        VacinasModel vacina = new VacinasModel("Gripe", "Pfizer");
+        vacina.setId(idVacina);
+        Mockito.when(vacinasRepository.findById(idVacina)).thenReturn(Optional.of(vacina));
+        Mockito.when(vacinasRepository.save(Mockito.any())).thenReturn(vacina);
+
+        String requestBody = "{\"nome\": \"Gripe\", \"lote\": \"Pfizer\"}";
+
+        mockMvc.perform(put("/api/vacinas/{idVacina}", idVacina)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nome").value("Gripe"))
+                .andExpect(jsonPath("$.lote").value("Pfizer"))
+                .andExpect(content().json(requestBody));
     }
 
     @Test

@@ -76,6 +76,28 @@ class UsuarioTest {
     }
 
     @Test
+    void atualizarUsuarioTest() throws Exception {
+        Long idUsuario = 1L;
+        UsuarioModel usuario = new UsuarioModel("Kaian", "kaian@gmail.com", "kaian1234", TipoUsuario.USUARIO);
+        usuario.setId(idUsuario);
+        Mockito.when(usuarioRepository.findById(idUsuario)).thenReturn(Optional.of(usuario));
+        Mockito.when(usuarioRepository.save(Mockito.any())).thenReturn(usuario);
+
+        String requestBody = "{\"username\": \"Kaian\", \"email\": \"kaian@gmail.com\"}";
+
+        mockMvc.perform(put("/api/usuarios/{idUsuario}", idUsuario)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username").value("Kaian"))
+                .andExpect(jsonPath("$.email").value("kaian@gmail.com"))
+                .andExpect(content().json(requestBody));
+    }
+
+    @Test
     void usuariosTestDeleteById() throws Exception {
         // Criação do usuário de exemplo
         UsuarioModel usuario = new UsuarioModel("Kaian", "kaian@gmail.com", "kaian1234", TipoUsuario.USUARIO);

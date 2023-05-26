@@ -1,8 +1,6 @@
 package br.com.uniceplac.appvacina.controller;
 
-import br.com.uniceplac.appvacina.DTO.CampanhaVacinacaoDTO;
 import br.com.uniceplac.appvacina.DTO.PacienteDTO;
-import br.com.uniceplac.appvacina.models.CampanhaVacinacaoModel;
 import br.com.uniceplac.appvacina.models.PacienteModel;
 import br.com.uniceplac.appvacina.service.PacienteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -84,7 +82,7 @@ public class PacienteController {
 
         pacienteService.savePaciente(pacientePut);
 
-        return ResponseEntity.status(HttpStatus.OK).body("Paciente Atualizado: " + new PacienteDTO(pacientePut));
+        return ResponseEntity.status(HttpStatus.OK).body(new PacienteDTO(pacientePut));
     }
 
     @Operation(summary = "Delete o paciente que representa o idPaciente passado no end-point da requisição", method = "DELETE")

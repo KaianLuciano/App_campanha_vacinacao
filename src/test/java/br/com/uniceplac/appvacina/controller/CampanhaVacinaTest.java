@@ -1,13 +1,10 @@
 package br.com.uniceplac.appvacina.controller;
 
 import br.com.uniceplac.appvacina.models.CampanhaVacinacaoModel;
-import br.com.uniceplac.appvacina.models.VacinasModel;
 import br.com.uniceplac.appvacina.repository.CampanhaVacinacaoRepository;
-import br.com.uniceplac.appvacina.repository.VacinasRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,13 +12,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -29,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CampanhaVacinaTest {
+class CampanhaVacinaTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -81,6 +74,27 @@ public class CampanhaVacinaTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.nome").value("Sarampo"))
                 .andExpect(content().json("{nome: 'Sarampo', data: null}"));
+    }
+
+    @Test
+    void atualizarCampanhaTest() throws Exception {
+        Long idCampanha = 1L;
+        CampanhaVacinacaoModel campanha = new CampanhaVacinacaoModel("Sarampo", null);
+        campanha.setId(idCampanha);
+        Mockito.when(campanhaVacinacaoRepository.findById(idCampanha)).thenReturn(Optional.of(campanha));
+        Mockito.when(campanhaVacinacaoRepository.save(Mockito.any())).thenReturn(campanha);
+
+        String requestBody = "{\"nome\": \"Sarampo\", \"data\": null}";
+
+        mockMvc.perform(put("/api/campanhas/{idCampanha}", idCampanha)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nome").value("Sarampo"))
+                .andExpect(content().json(requestBody));
     }
 
     @Test

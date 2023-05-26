@@ -80,7 +80,7 @@ public class CampanhaVacinacaoController {
 
         vacinacaoService.saveCampanha(vacinacaoPut);
 
-        return ResponseEntity.status(HttpStatus.OK).body("Campanha Atualizada: " + new CampanhaVacinacaoDTO(vacinacaoPut));
+        return ResponseEntity.status(HttpStatus.OK).body(new CampanhaVacinacaoDTO(vacinacaoPut));
     }
 
 

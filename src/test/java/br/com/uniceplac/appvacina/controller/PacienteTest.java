@@ -1,9 +1,7 @@
 package br.com.uniceplac.appvacina.controller;
 
 import br.com.uniceplac.appvacina.models.PacienteModel;
-import br.com.uniceplac.appvacina.models.UsuarioModel;
 import br.com.uniceplac.appvacina.models.enums.Genero;
-import br.com.uniceplac.appvacina.models.enums.TipoUsuario;
 import br.com.uniceplac.appvacina.repository.PacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -24,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PacienteTest {
+class PacienteTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -77,6 +75,28 @@ public class PacienteTest {
                 .andExpect(jsonPath("$.genero").value("HOMEM"))
                 .andExpect(jsonPath("$.idade").value(12))
                 .andExpect(content().json("{nome: 'Kaian Luciano', genero: 'HOMEM', idade: 12}"));
+    }
+
+    @Test
+    void atualizarPacienteTest() throws Exception {
+        PacienteModel paciente = new PacienteModel("123456789", "Kaian Luciano", Genero.HOMEM, 12);
+
+        Mockito.when(pacienteRepository.findById(paciente.getCpf())).thenReturn(Optional.of(paciente));
+        Mockito.when(pacienteRepository.save(Mockito.any())).thenReturn(paciente);
+
+        String requestBody = "{\"nome\": \"Kaian Luciano\", \"genero\": \"HOMEM\", \"idade\": 12}";
+
+        mockMvc.perform(put("/api/pacientes/{idPaciente}", paciente.getCpf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nome").value("Kaian Luciano"))
+                .andExpect(jsonPath("$.genero").value("HOMEM"))
+                .andExpect(jsonPath("$.idade").value(12))
+                .andExpect(content().json(requestBody));
     }
 
     @Test

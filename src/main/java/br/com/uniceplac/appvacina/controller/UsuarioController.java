@@ -82,7 +82,7 @@ public class UsuarioController {
 
         usuarioService.saveUsuario(usuarioPut);
 
-        return ResponseEntity.status(HttpStatus.OK).body("Usuario Atualizado: " + new UsuarioDTO(usuarioPut));
+        return ResponseEntity.status(HttpStatus.OK).body(new UsuarioDTO(usuarioPut));
     }
 
     @Operation(summary = "Delete o usuario que representa o idUsuario passado no end-point da requisição", method = "DELETE")
