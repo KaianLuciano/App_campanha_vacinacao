@@ -35,9 +35,14 @@ public class UsuarioService {
     }
 
     public UsuarioDTO deleteUsuarioById(Long idUsuario) {
+        Optional<UsuarioModel> usuario = usuarioRepository.findById(idUsuario);
         usuarioRepository.deleteById(idUsuario);
-        UsuarioModel usuario = usuarioRepository.findById(idUsuario).get();
-        return new UsuarioDTO(usuario);
+        if(usuario.isEmpty()) {
+            return null;
+        } else {
+            return new UsuarioDTO(usuario.get());
+
+        }
     }
 
 }
