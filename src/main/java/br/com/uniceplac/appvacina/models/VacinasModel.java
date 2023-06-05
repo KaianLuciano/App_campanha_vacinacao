@@ -1,5 +1,6 @@
 package br.com.uniceplac.appvacina.models;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,15 +16,16 @@ public class VacinasModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
     private Long id;
 
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "lote")
-    private String lote;
+    @ManyToOne
+    private LoteModel lote;
 
-    public VacinasModel(String nome, String lote) {
+    public VacinasModel(String nome, LoteModel lote) {
         this.nome = nome;
         this.lote = lote;
     }

@@ -1,5 +1,6 @@
 package br.com.uniceplac.appvacina.DTO;
 
+import br.com.uniceplac.appvacina.models.LoteModel;
 import br.com.uniceplac.appvacina.models.PacienteModel;
 import br.com.uniceplac.appvacina.models.VacinasModel;
 import jakarta.persistence.Column;
@@ -24,7 +25,7 @@ public class VacinasDTO implements Serializable {
     private String nome;
 
     @Column(name = "lote")
-    private String lote;
+    private LoteModel lote;
 
     public VacinasDTO(VacinasModel entity) {
         BeanUtils.copyProperties(entity, this);

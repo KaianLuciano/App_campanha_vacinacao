@@ -24,48 +24,24 @@ public class CampanhaVacinacaoController {
     final CampanhaVacinacaoService vacinacaoService;
 
     @Operation(summary = "Buscar todas as campanhas presentes no banco", method = "GET")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
-            @ApiResponse(responseCode = "422", description = "Dados de requisição inválida"),
-            @ApiResponse(responseCode = "400", description = "Parametros inválidados"),
-            @ApiResponse(responseCode = "500", description = "Erro ao realizar busca dos dados"),
-    })
     @GetMapping
     public ResponseEntity<Object> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(vacinacaoService.findAll());
     }
 
     @Operation(summary = "Busca a campanha de vacinação presente no banco representada pelo ID passado no end-point", method = "GET")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
-            @ApiResponse(responseCode = "422", description = "Dado de requisição inválida"),
-            @ApiResponse(responseCode = "400", description = "Parametro inválidado"),
-            @ApiResponse(responseCode = "500", description = "Erro ao realizar busca dos dados"),
-    })
     @GetMapping(value = "/{idCampanha}")
     public ResponseEntity<Object> findById(@PathVariable (value = "idCampanha") Long idCampanha) {
         return ResponseEntity.status(HttpStatus.OK).body(vacinacaoService.findById(idCampanha));
     }
 
     @Operation(summary = "Salva uma nova campanha de acordo com os parâmetros do objeto recebido", method = "POST")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Campanha salva com sucesso"),
-            @ApiResponse(responseCode = "422", description = "Dados ds requisição inválida"),
-            @ApiResponse(responseCode = "400", description = "Parametros inválidado"),
-            @ApiResponse(responseCode = "500", description = "Erro ao salvar os dados"),
-    })
     @PostMapping (consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> saveCampanha(@RequestBody CampanhaVacinacaoModel vacinacaoModel) {
         return ResponseEntity.status(HttpStatus.OK).body(vacinacaoService.saveCampanha(vacinacaoModel));
     }
 
     @Operation(summary = "Atualiza uma campanha existente no banco", method = "PUT")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Campanha atualizada com sucesso"),
-            @ApiResponse(responseCode = "422", description = "Dados ds requisição inválida"),
-            @ApiResponse(responseCode = "400", description = "Parametros inválidado"),
-            @ApiResponse(responseCode = "500", description = "Erro ao atualizar os dados"),
-    })
     @PutMapping(value = "/{idCampanha}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> updateCampanha(@PathVariable(value = "idCampanha") Long idCampanha, @RequestBody CampanhaVacinacaoModel vacinacaoModel) {
         Optional<CampanhaVacinacaoModel> vacinacaoModelOptional = vacinacaoService.findByIdPrivate(idCampanha);
@@ -85,12 +61,6 @@ public class CampanhaVacinacaoController {
 
 
     @Operation(summary = "Delete a campanha que representa o idCampanha passado no end-point da requisição", method = "DELETE")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Campanha salva com sucesso"),
-            @ApiResponse(responseCode = "422", description = "Dados ds requisição inválida"),
-            @ApiResponse(responseCode = "400", description = "Parametros inválidado"),
-            @ApiResponse(responseCode = "500", description = "Erro ao salvar os dados"),
-    })
     @DeleteMapping(value = "/{idCampanha}")
     public ResponseEntity<Object> deleteCampanha(@PathVariable(value = "idCampanha") Long idCampanha) {
         return ResponseEntity.status(HttpStatus.OK).body(vacinacaoService.deleteCampanhaById(idCampanha));
