@@ -1,5 +1,6 @@
 package br.com.uniceplac.appvacina.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class VacinasModel implements Serializable {
     private String nome;
 
     @ManyToOne
+    @JsonIgnore
     private LoteModel lote;
 
     public VacinasModel(String nome, LoteModel lote) {

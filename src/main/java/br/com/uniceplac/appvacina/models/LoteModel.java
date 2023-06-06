@@ -2,16 +2,15 @@ package br.com.uniceplac.appvacina.models;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_lotes")
+@Builder
 @NoArgsConstructor @AllArgsConstructor @Setter @Getter
 public class LoteModel {
 
@@ -36,8 +35,7 @@ public class LoteModel {
 
     private String informacoesControleQualidade;
 
-    @ManyToOne
-    @JoinColumn(name = "lote")
-    private VacinasModel vacinas;
-
+    @OneToMany(mappedBy = "lote", cascade = CascadeType.ALL)
+    @Hidden
+    private List<VacinasModel> vacinas;
 }

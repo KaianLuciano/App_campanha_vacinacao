@@ -31,12 +31,12 @@ public class LoteService {
         return loteRepository.findById(idLote);
     }
 
-    public LoteDTO saveVacina(LoteModel loteModel) {
+    public LoteDTO saveLote(LoteModel loteModel) {
         loteRepository.save(loteModel);
         return new LoteDTO(loteModel);
     }
 
-    public LoteDTO deleteVacina(Long idLote) {
+    public LoteDTO deleteLote(Long idLote) {
         LoteModel loteModel = loteRepository.findById(idLote).get();
         loteRepository.deleteById(idLote);
         return new LoteDTO(loteModel);
