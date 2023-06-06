@@ -1,11 +1,9 @@
 package br.com.uniceplac.appvacina.controller;
 
-import br.com.uniceplac.appvacina.DTO.PacienteDTO;
+import br.com.uniceplac.appvacina.dto.PacienteDto;
 import br.com.uniceplac.appvacina.models.PacienteModel;
 import br.com.uniceplac.appvacina.service.PacienteService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,13 +36,13 @@ public class PacienteController {
 
     @Operation(summary = "Salva um novo paciente de acordo com os parâmetros do objeto recebido", method = "POST")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> savePaciente(@RequestBody PacienteModel pacienteModel) {
+    public ResponseEntity<Object> save(@RequestBody PacienteModel pacienteModel) {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteService.savePaciente(pacienteModel));
     }
 
     @Operation(summary = "Atualiza um paciente existente no banco", method = "PUT")
     @PutMapping(value = "/{idPaciente}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> updatePaciente(@PathVariable(value = "idPaciente") String idPaciente, @RequestBody PacienteModel pacienteModel) {
+    public ResponseEntity<Object> update(@PathVariable(value = "idPaciente") String idPaciente, @RequestBody PacienteModel pacienteModel) {
         Optional<PacienteModel> pacienteModelOptional = pacienteService.findByIdPrivate(idPaciente);
 
         if (pacienteModelOptional.isEmpty()) {
@@ -58,12 +56,12 @@ public class PacienteController {
 
         pacienteService.savePaciente(pacientePut);
 
-        return ResponseEntity.status(HttpStatus.OK).body(new PacienteDTO(pacientePut));
+        return ResponseEntity.status(HttpStatus.OK).body(new PacienteDto(pacientePut));
     }
 
     @Operation(summary = "Delete o paciente que representa o idPaciente passado no end-point da requisição", method = "DELETE")
     @DeleteMapping("/{idPaciente}")
-    public ResponseEntity<Object> deleteCampanhaById(@PathVariable(value = "idPaciente") String idPaciente) {
+    public ResponseEntity<Object> deleteById(@PathVariable(value = "idPaciente") String idPaciente) {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteService.deletePaciente(idPaciente));
     }
 

@@ -1,12 +1,8 @@
-package br.com.uniceplac.appvacina.DTO;
+package br.com.uniceplac.appvacina.dto;
 
 import br.com.uniceplac.appvacina.models.LoteModel;
-import br.com.uniceplac.appvacina.models.PacienteModel;
 import br.com.uniceplac.appvacina.models.VacinasModel;
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +15,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class VacinasDTO implements Serializable {
+public class VacinasDto implements Serializable {
 
     @Column(name = "nome")
     private String nome;
@@ -27,7 +23,7 @@ public class VacinasDTO implements Serializable {
     @Column(name = "lote")
     private LoteModel lote;
 
-    public VacinasDTO(VacinasModel entity) {
+    public VacinasDto(VacinasModel entity) {
         BeanUtils.copyProperties(entity, this);
     }
 }

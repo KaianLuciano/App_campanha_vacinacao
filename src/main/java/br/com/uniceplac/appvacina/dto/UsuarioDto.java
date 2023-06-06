@@ -1,11 +1,7 @@
-package br.com.uniceplac.appvacina.DTO;
+package br.com.uniceplac.appvacina.dto;
 
 import br.com.uniceplac.appvacina.models.UsuarioModel;
-import br.com.uniceplac.appvacina.models.enums.TipoUsuario;
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +14,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioDTO implements Serializable {
+public class UsuarioDto implements Serializable {
 
     @Column(name = "username")
     private String username;
@@ -26,7 +22,7 @@ public class UsuarioDTO implements Serializable {
     @Column(name = "email")
     private String email;
 
-    public UsuarioDTO(UsuarioModel entity) {
+    public UsuarioDto(UsuarioModel entity) {
         BeanUtils.copyProperties(entity, this);
     }
 }

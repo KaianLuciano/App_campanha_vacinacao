@@ -1,11 +1,8 @@
 package br.com.uniceplac.appvacina.service;
 
-import br.com.uniceplac.appvacina.DTO.LoteDTO;
-import br.com.uniceplac.appvacina.DTO.VacinasDTO;
+import br.com.uniceplac.appvacina.dto.LoteDto;
 import br.com.uniceplac.appvacina.models.LoteModel;
-import br.com.uniceplac.appvacina.models.VacinasModel;
 import br.com.uniceplac.appvacina.repository.LoteRepository;
-import br.com.uniceplac.appvacina.repository.VacinasRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,28 +15,28 @@ public class LoteService {
 
     final LoteRepository loteRepository;
 
-    public List<LoteDTO> findAll() {
+    public List<LoteDto> findAll() {
         List<LoteModel> loteModels = loteRepository.findAll();
-        return loteModels.stream().map(x -> new LoteDTO(x)).toList();
+        return loteModels.stream().map(x -> new LoteDto(x)).toList();
     }
 
-    public LoteDTO findById(Long idLote) {
-        return new LoteDTO(loteRepository.findById(idLote).get());
+    public LoteDto findById(Long idLote) {
+        return new LoteDto(loteRepository.findById(idLote).get());
     }
 
     public Optional<LoteModel> findByIdPrivate(Long idLote) {
         return loteRepository.findById(idLote);
     }
 
-    public LoteDTO saveLote(LoteModel loteModel) {
+    public LoteDto saveLote(LoteModel loteModel) {
         loteRepository.save(loteModel);
-        return new LoteDTO(loteModel);
+        return new LoteDto(loteModel);
     }
 
-    public LoteDTO deleteLote(Long idLote) {
+    public LoteDto deleteLote(Long idLote) {
         LoteModel loteModel = loteRepository.findById(idLote).get();
         loteRepository.deleteById(idLote);
-        return new LoteDTO(loteModel);
+        return new LoteDto(loteModel);
     }
 
 }

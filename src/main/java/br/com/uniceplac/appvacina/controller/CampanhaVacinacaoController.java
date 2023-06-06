@@ -1,11 +1,9 @@
 package br.com.uniceplac.appvacina.controller;
 
-import br.com.uniceplac.appvacina.DTO.CampanhaVacinacaoDTO;
+import br.com.uniceplac.appvacina.dto.CampanhaVacinacaoDto;
 import br.com.uniceplac.appvacina.models.CampanhaVacinacaoModel;
 import br.com.uniceplac.appvacina.service.CampanhaVacinacaoService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,13 +35,13 @@ public class CampanhaVacinacaoController {
 
     @Operation(summary = "Salva uma nova campanha de acordo com os parâmetros do objeto recebido", method = "POST")
     @PostMapping (consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> saveCampanha(@RequestBody CampanhaVacinacaoModel vacinacaoModel) {
+    public ResponseEntity<Object> save(@RequestBody CampanhaVacinacaoModel vacinacaoModel) {
         return ResponseEntity.status(HttpStatus.OK).body(vacinacaoService.saveCampanha(vacinacaoModel));
     }
 
     @Operation(summary = "Atualiza uma campanha existente no banco", method = "PUT")
     @PutMapping(value = "/{idCampanha}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> updateCampanha(@PathVariable(value = "idCampanha") Long idCampanha, @RequestBody CampanhaVacinacaoModel vacinacaoModel) {
+    public ResponseEntity<Object> update(@PathVariable(value = "idCampanha") Long idCampanha, @RequestBody CampanhaVacinacaoModel vacinacaoModel) {
         Optional<CampanhaVacinacaoModel> vacinacaoModelOptional = vacinacaoService.findByIdPrivate(idCampanha);
 
         if (vacinacaoModelOptional.isEmpty()) {
@@ -56,13 +54,13 @@ public class CampanhaVacinacaoController {
 
         vacinacaoService.saveCampanha(vacinacaoPut);
 
-        return ResponseEntity.status(HttpStatus.OK).body(new CampanhaVacinacaoDTO(vacinacaoPut));
+        return ResponseEntity.status(HttpStatus.OK).body(new CampanhaVacinacaoDto(vacinacaoPut));
     }
 
 
     @Operation(summary = "Delete a campanha que representa o idCampanha passado no end-point da requisição", method = "DELETE")
     @DeleteMapping(value = "/{idCampanha}")
-    public ResponseEntity<Object> deleteCampanha(@PathVariable(value = "idCampanha") Long idCampanha) {
+    public ResponseEntity<Object> delete(@PathVariable(value = "idCampanha") Long idCampanha) {
         return ResponseEntity.status(HttpStatus.OK).body(vacinacaoService.deleteCampanhaById(idCampanha));
     }
 

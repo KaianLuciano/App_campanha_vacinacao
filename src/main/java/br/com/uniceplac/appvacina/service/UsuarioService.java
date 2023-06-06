@@ -1,6 +1,6 @@
 package br.com.uniceplac.appvacina.service;
 
-import br.com.uniceplac.appvacina.DTO.UsuarioDTO;
+import br.com.uniceplac.appvacina.dto.UsuarioDto;
 import br.com.uniceplac.appvacina.models.UsuarioModel;
 import br.com.uniceplac.appvacina.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -15,32 +15,32 @@ public class UsuarioService {
 
     final UsuarioRepository usuarioRepository;
 
-    public List<UsuarioDTO> findAll() {
+    public List<UsuarioDto> findAll() {
         List<UsuarioModel> usuarioModels = usuarioRepository.findAll();
-        return usuarioModels.stream().map(x -> new UsuarioDTO(x)).toList();
+        return usuarioModels.stream().map(x -> new UsuarioDto(x)).toList();
     }
 
-    public UsuarioDTO findById(Long idUsuario) {
+    public UsuarioDto findById(Long idUsuario) {
 
-        return new UsuarioDTO(usuarioRepository.findById(idUsuario).get());
+        return new UsuarioDto(usuarioRepository.findById(idUsuario).get());
     }
 
     public Optional<UsuarioModel> findByIdPrivate(Long idUsuario) {
         return usuarioRepository.findById(idUsuario);
     }
 
-    public UsuarioDTO saveUsuario(UsuarioModel usuarioModel) {
+    public UsuarioDto saveUsuario(UsuarioModel usuarioModel) {
         usuarioRepository.save(usuarioModel);
-        return new UsuarioDTO(usuarioModel);
+        return new UsuarioDto(usuarioModel);
     }
 
-    public UsuarioDTO deleteUsuarioById(Long idUsuario) {
+    public UsuarioDto deleteUsuarioById(Long idUsuario) {
         Optional<UsuarioModel> usuario = usuarioRepository.findById(idUsuario);
         usuarioRepository.deleteById(idUsuario);
         if(usuario.isEmpty()) {
             return null;
         } else {
-            return new UsuarioDTO(usuario.get());
+            return new UsuarioDto(usuario.get());
 
         }
     }

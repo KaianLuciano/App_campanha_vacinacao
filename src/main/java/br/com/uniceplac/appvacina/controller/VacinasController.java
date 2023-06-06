@@ -1,11 +1,9 @@
 package br.com.uniceplac.appvacina.controller;
 
-import br.com.uniceplac.appvacina.DTO.VacinasDTO;
+import br.com.uniceplac.appvacina.dto.VacinasDto;
 import br.com.uniceplac.appvacina.models.VacinasModel;
 import br.com.uniceplac.appvacina.service.VacinasService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -56,7 +54,7 @@ public class VacinasController {
 
         vacinasService.saveVacina(vacinaPut);
 
-        return ResponseEntity.status(HttpStatus.OK).body(new VacinasDTO(vacinaPut));
+        return ResponseEntity.status(HttpStatus.OK).body(new VacinasDto(vacinaPut));
     }
 
     @Operation(summary = "Deleta a vacina que representa o idVacina passado no end-point da requisição", method = "DELETE")

@@ -1,11 +1,9 @@
 package br.com.uniceplac.appvacina.controller;
 
-import br.com.uniceplac.appvacina.DTO.UsuarioDTO;
+import br.com.uniceplac.appvacina.dto.UsuarioDto;
 import br.com.uniceplac.appvacina.models.UsuarioModel;
 import br.com.uniceplac.appvacina.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -58,7 +56,7 @@ public class UsuarioController {
 
         usuarioService.saveUsuario(usuarioPut);
 
-        return ResponseEntity.status(HttpStatus.OK).body(new UsuarioDTO(usuarioPut));
+        return ResponseEntity.status(HttpStatus.OK).body(new UsuarioDto(usuarioPut));
     }
 
     @Operation(summary = "Delete o usuario que representa o idUsuario passado no end-point da requisição", method = "DELETE")

@@ -1,10 +1,7 @@
 package br.com.uniceplac.appvacina.service;
 
-import br.com.uniceplac.appvacina.DTO.UsuarioDTO;
-import br.com.uniceplac.appvacina.DTO.VacinasDTO;
-import br.com.uniceplac.appvacina.controller.utils.ApiResponse;
+import br.com.uniceplac.appvacina.dto.VacinasDto;
 import br.com.uniceplac.appvacina.models.LoteModel;
-import br.com.uniceplac.appvacina.models.UsuarioModel;
 import br.com.uniceplac.appvacina.models.VacinasModel;
 import br.com.uniceplac.appvacina.repository.LoteRepository;
 import br.com.uniceplac.appvacina.repository.VacinasRepository;
@@ -23,22 +20,22 @@ import java.util.Optional;
 public class VacinasService {
 
     final VacinasRepository vacinasRepository;
-    final LoteService loteService;
+    final LoteRepository loteRepository;
 
-    public List<VacinasDTO> findAll() {
+    public List<VacinasDto> findAll() {
         List<VacinasModel> vacinasModels = vacinasRepository.findAll();
-        return vacinasModels.stream().map(x -> new VacinasDTO(x)).toList();
+        return vacinasModels.stream().map(x -> new VacinasDto(x)).toList();
     }
 
-    public VacinasDTO findById(Long idVacinas) {
-        return new VacinasDTO(vacinasRepository.findById(idVacinas).get());
+    public VacinasDto findById(Long idVacinas) {
+        return new VacinasDto(vacinasRepository.findById(idVacinas).get());
     }
 
     public Optional<VacinasModel> findByIdPrivate(Long idVacinas) {
         return vacinasRepository.findById(idVacinas);
     }
 
-    public VacinasDTO saveVacina(VacinasModel vacinasModel) {
+    public VacinasDto saveVacina(VacinasModel vacinasModel) {
 
         try {
             if (vacinasModel.getLote() == null) {
@@ -60,12 +57,12 @@ public class VacinasService {
                         .build();
 
                 vacinasModel.setLote(loteModel);
-                loteService.saveLote(loteModel);
+                loteRepository.save(loteModel);
                 vacinasRepository.save(vacinasModel);
-                return new VacinasDTO(vacinasModel);
+                return new VacinasDto(vacinasModel);
             } else {
                 vacinasRepository.save(vacinasModel);
-                return new VacinasDTO(vacinasModel);
+                return new VacinasDto(vacinasModel);
             }
 
 
@@ -74,10 +71,10 @@ public class VacinasService {
         }
     }
 
-    public VacinasDTO deleteVacina(Long idVacina) {
+    public VacinasDto deleteVacina(Long idVacina) {
         VacinasModel vacina = vacinasRepository.findById(idVacina).get();
         vacinasRepository.deleteById(idVacina);
-        return new VacinasDTO(vacina);
+        return new VacinasDto(vacina);
     }
 
 }

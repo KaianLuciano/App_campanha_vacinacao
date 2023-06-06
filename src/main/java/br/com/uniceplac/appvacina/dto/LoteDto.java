@@ -1,9 +1,7 @@
-package br.com.uniceplac.appvacina.DTO;
+package br.com.uniceplac.appvacina.dto;
 
 import br.com.uniceplac.appvacina.models.LoteModel;
 import br.com.uniceplac.appvacina.models.VacinasModel;
-import io.swagger.v3.oas.annotations.Hidden;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,12 +11,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoteDTO implements Serializable {
+public class LoteDto implements Serializable {
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataFabricacao;
@@ -29,9 +28,9 @@ public class LoteDTO implements Serializable {
     private String informacoesArmazenamento;
     private String registroSanitario;
     private String informacoesControleQualidade;
-    private VacinasModel vacinas;
+    private List<VacinasModel> vacinas;
 
-    public LoteDTO(LoteModel entity) {
+    public LoteDto(LoteModel entity) {
         BeanUtils.copyProperties(entity, this);
     }
 }
