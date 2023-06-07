@@ -4,6 +4,7 @@ import br.com.uniceplac.appvacina.dto.UsuarioDto;
 import br.com.uniceplac.appvacina.models.UsuarioModel;
 import br.com.uniceplac.appvacina.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +31,9 @@ public class UsuarioService {
     }
 
     public UsuarioDto saveUsuario(UsuarioModel usuarioModel) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String senhaEncriptografada = passwordEncoder.encode(usuarioModel.getSenha());
+        usuarioModel.setSenha(senhaEncriptografada);
         usuarioRepository.save(usuarioModel);
         return new UsuarioDto(usuarioModel);
     }

@@ -1,4 +1,4 @@
-package br.com.uniceplac.appvacina.dto;
+package br.com.uniceplac.appvacina.security.user;
 
 import br.com.uniceplac.appvacina.models.UsuarioModel;
 import jakarta.persistence.Column;
@@ -14,12 +14,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioDto implements Serializable {
-
-    private String nome;
+public class LoginDto implements Serializable {
     private String email;
-
-    public UsuarioDto(UsuarioModel entity) {
-        BeanUtils.copyProperties(entity, this);
-    }
+    private String senha;
 }

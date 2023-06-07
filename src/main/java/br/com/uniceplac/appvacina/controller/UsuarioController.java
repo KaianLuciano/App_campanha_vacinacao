@@ -49,7 +49,7 @@ public class UsuarioController {
         }
 
         UsuarioModel usuarioPut = usuarioModelOptional.get();
-        usuarioPut.setUsername(usuarioModel.getUsername());
+        usuarioPut.setNome(usuarioModel.getUsername());
         usuarioPut.setEmail(usuarioModel.getEmail());
         usuarioPut.setSenha(usuarioModel.getSenha());
         usuarioPut.setTipo_usuario(usuarioModel.getTipo_usuario());
