@@ -33,7 +33,7 @@ public class VacinasController {
         return ResponseEntity.status(HttpStatus.OK).body(vacinasService.findById(idVacina));
     }
 
-    @Operation(summary = "Salva uma nova vacina de acordo com os parâmetros do objeto recebido", method = "POST")
+    @Operation(summary = "Salva uma nova vacina de acordo com os parâmetros do objeto recebido, cria um novo lote e associa-o ao mesmo (Temporario para testes)", method = "POST")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> saveVacina(@RequestBody VacinasModel vacinasModel) {
         return ResponseEntity.status(HttpStatus.OK).body(vacinasService.saveVacina(vacinasModel));
