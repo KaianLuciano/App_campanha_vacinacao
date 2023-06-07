@@ -21,7 +21,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private TokenService tokenService;
 
-    @Operation(summary = "Autentica o usuario passado", method = "POST")
+    @Operation(summary = "Autentica o usuario passado, retornando o token de acesso do mesmo", method = "POST")
     @PostMapping("/login")
     public String login(@RequestBody LoginDto loginDto) {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
