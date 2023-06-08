@@ -3,15 +3,13 @@ package br.com.uniceplac.appvacina.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_vacinas")
+@Builder
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class VacinasModel implements Serializable {
 
