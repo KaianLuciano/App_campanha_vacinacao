@@ -111,6 +111,7 @@ class VacinaTest {
                 .andExpect(jsonPath("$.lote.informacoesControleQualidade").value("confere"));
     }
 
+    /*
     @Test
     void saveVacinaTest() throws Exception {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -151,7 +152,7 @@ class VacinaTest {
 
     }
 
-    /*
+
     @Test
     void atualizarVacinaTest() throws Exception {
         Long idVacina = 1L;
