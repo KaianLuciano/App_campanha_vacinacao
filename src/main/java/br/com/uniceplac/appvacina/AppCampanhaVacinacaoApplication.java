@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Campanha de Vacinação API", version = "1", description = "" +
+@OpenAPIDefinition(info = @Info(title = "Campanha de Vacinação", version = "1", description = "API Desenvolvida para um cliente externo da faculdade, cujo intuito é o gerenciamento dos dados da empresa" +
 		"O projeto \"App_campanha_vacinacao\" é uma API desenvolvida utilizando o framework Spring Boot, versão 3.1.0. A API é projetada para ser utilizada em um aplicativo de vacinação, fornecendo funcionalidades relacionadas à gestão de campanhas de vacinação.\n" +
 		"\n" +
 		"O projeto utiliza a versão 17 do Java, além disso possui as seguintes dependências:\n" +
